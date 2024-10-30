@@ -10,7 +10,7 @@ module.exports = {
       },
       borderRadius: {
         'custom' : '0px 20px 20px 0',
-        'cust': ' 20px 0 0 20px'
+        'cust': ' 24px 0 0 24px'
         
       }
     },

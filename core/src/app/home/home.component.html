@@ -4,14 +4,14 @@
         <!-- Bar pour contenir ajouter le lien  -->
          <form action="post" class="flex flex-col">
             <label for="link" class="m-4 text-2xl text-blue-400">Copye link</label>
-            <div>
-                <input type="search" placeholder="Video URL Link " class="border border-r-0 w-[80%] rounded-cust p-5 mb-3 outline-none focus:shadow-xl">
-                <button class="w-[20%] border p-5 rounded-custom  bg-blue-400">Send</button>
+            <div class="border rounded-3xl mb-2 ">
+                <input type="search" placeholder="Video URL Link " class="text-xl font-mono w-[80%] rounded-cust p-5   outline-none focus:shadow-xl">
+                <button class="w-[20%] border  p-5 rounded-custom  bg-blue-400">Send</button>
             </div>
            
          </form>
         <!-- Affichier le banner de la video -->
-        <div class="  w-[500px] res:w-[200px] rounded-3xl  ">
+        <div class="  w-[500px] res:w-[200px] rounded-3xl  cursor-pointer ">
             <div class="w-full h-[100%]  rounded-3xl" >
                 <img src="../../assets/image/youtube.webp" alt="" class="rounded-3xl">
             </div>
@@ -22,7 +22,7 @@
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque, iste</p>
         </div>
         <!-- partie pour choisire la quality de video  -->
-        <select class="w-40 shadow-xl p-5 outline-none  m-4 rounded-xl text-slate-50 font-bold bg-black" name="" id="">
+        <select class="w-40 shadow-xl p-5 outline-none  m-4 rounded-xl text-slate-50 font-bold bg-black transition-all" name="" id="">
             <option value="360p" class="">360p</option>
             <option value="460p">460p</option>
             <option value="760p">760p</option>
@@ -31,9 +31,9 @@
 
         <!-- Button de telechargement  -->
             <!-- Music -->
-         <button class="bg-red-400 w-[500px] p-3 rounded-2xl text-slate-50 font-bold text-3xl mb-8 hover:scale-[1.01] transition-all">Download audio</button>
+         <button class="bg-red-400 w-[500px] p-3 rounded-2xl text-slate-50 font-bold text-3xl mb-8 hover:scale-[1.01] transition-all">Download video</button>
             <!-- Video -->
-        <button class="bg-red-500 w-[500px] p-3 rounded-2xl font-bold text-slate-50 text-3xl hover:scale-[1.01]  transition-all">Download video</button>
+        <button class="bg-red-500 w-[500px] p-3 rounded-2xl font-bold text-slate-50 text-3xl hover:scale-[1.01]  transition-all">Download audio</button>
 
 
     </div>
