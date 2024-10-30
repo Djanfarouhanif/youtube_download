@@ -1,14 +1,20 @@
-<div class="h-screen p-10 flex justify-center res:bg-black ">
+<div class=" p-10 flex justify-center res:bg-black ">
     
     <div class="flex flex-col justify-center ">
         <!-- Bar pour contenir ajouter le lien  -->
          <form action="post" class="flex flex-col">
             <label for="link" class="m-4 text-2xl text-blue-400">Copye link</label>
-            <input type="search" placeholder="Video URL Link " class="border w-[500px] rounded-2xl p-5 mb-3 outline-none focus:shadow-xl">
+            <div>
+                <input type="search" placeholder="Video URL Link " class="border border-r-0 w-[80%] rounded-cust p-5 mb-3 outline-none focus:shadow-xl">
+                <button class="w-[20%] border p-5 rounded-custom  bg-blue-400">Send</button>
+            </div>
+           
          </form>
         <!-- Affichier le banner de la video -->
-        <div class="  w-[500px] res:w-[200px] h-[350px] res:h-[120px] ">
-            <div class="w-full h-[100%] bg-blue-400 rounded-xl" ></div>
+        <div class="  w-[500px] res:w-[200px] rounded-3xl  ">
+            <div class="w-full h-[100%]  rounded-3xl" >
+                <img src="../../assets/image/youtube.webp" alt="" class="rounded-3xl">
+            </div>
            
         </div>
         <!-- Titre de l'image  -->
