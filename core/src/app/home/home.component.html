@@ -2,12 +2,13 @@
     
     <div class="flex flex-col justify-center ">
         <!-- Bar pour contenir ajouter le lien  -->
-         <form action="post" class="flex flex-col">
+         <form [formGroup]="formulaire" (ngSubmit)="enyoyerData()" class="flex flex-col">
             <label for="link" class="m-4 text-2xl text-blue-400">Copye link</label>
             <div class="border rounded-3xl mb-2 ">
-                <input type="search" placeholder="Video URL Link " class="text-xl font-mono w-[80%] rounded-cust p-5   outline-none focus:shadow-xl">
-                <button class="w-[20%] border  p-5 rounded-custom  bg-blue-400">Send</button>
+                <input formControlName="video_url" type="search" placeholder="Video URL Link " class="text-xl font-mono w-[80%] rounded-cust p-5   outline-none focus:shadow-xl">
+                <button type="submit" class="w-[20%] border  p-5 rounded-custom  bg-blue-400">Send</button>
             </div>
+            <span *ngIf="formulaire.get('video_url')?.invalid && formulaire.get('video_url')?.touched">Url est requis</span>
            
          </form>
         <!-- Affichier le banner de la video -->
