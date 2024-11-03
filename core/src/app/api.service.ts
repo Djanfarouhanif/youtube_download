@@ -11,7 +11,7 @@ export class ApiService {
   
   constructor(private http:HttpClient ) { }
 
-  postData(data:any ): Observable<any>{
+  postData(data:any, option: any = {} ): Observable<any>{
     const headers = new HttpHeaders({ 'Content-Type': 'application/json'});
     return this.http.post<any>(this.apiUrl, data, {headers})
   }
