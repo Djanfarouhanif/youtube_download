@@ -28,7 +28,7 @@ export class HomeComponent {
         'video_url': video_url
           }; // données pour télécharger le une video
 
-        this.apiService.postData(data, {responseType: 'blob'}).subscribe({
+        this.apiService.postData(data).subscribe({
         next: (response) => {
           const url = window.URL.createObjectURL(response);
           const a = document.createElement('a');

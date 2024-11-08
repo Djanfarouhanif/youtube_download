@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
-import { Observable } from 'rxjs'
+import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,28 @@ export class ApiService {
   
   constructor(private http:HttpClient ) { }
 
-  postData(data:any, option: any = {} ): Observable<any>{
+
+  postData(data:any ): Observable<Blob>{
     const headers = new HttpHeaders({ 'Content-Type': 'application/json'});
-    return this.http.post<any>(this.apiUrl, data, {headers})
+    const options = { headers, responseType: 'blob' as 'json'}; // Type Blob pour la réponse binaire 
+
+
+    return this.http.post<Blob>(this.apiUrl, data, options).pipe(
+      catchError(this.handleError) // Gestion des erreurs si nécessaire
+    );
+  }
+
+  private handleError(error:HttpErrorResponse) {
+    let errorMessage = 'Une erreur est survenue';
+    if (error.error instanceof ErrorEvent){
+      // Erreur côté client
+      errorMessage = `Erreur: ${error.error.message}`;
+    } else {
+      // Erreur côté serveur
+      errorMessage = `Erreur serveur: ${error.status}\nMessage: ${error.message}`;
+
+    }
+    console.error(errorMessage);
+    return throwError(errorMessage);
   }
 }
