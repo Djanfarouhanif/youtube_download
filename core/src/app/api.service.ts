@@ -46,7 +46,7 @@ export class ApiService {
         xhr.open('POST', this.apiUrl, true);
         xhr.responseType = 'blob'; // Pour recevoire une réponse binaire
 
-        xhr.upload.onprogress = (event) => {
+        xhr.onprogress = (event) => {
           if (event.lengthComputable) {
             const progress = Math.round((event.loaded/ event.total) * 100);
             observer.next({progress});

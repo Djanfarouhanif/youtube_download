@@ -64,7 +64,6 @@ export class HomeComponent {
         }else {
           // Mettre à jour la progression du téléchargemment 
           this.progression = progressData.progress;
-          console.log(`Progression : ${this.progression}%`);
         }
       },
       error: (error) => console.error('Erreur:', error)
