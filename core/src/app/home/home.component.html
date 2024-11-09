@@ -1,8 +1,12 @@
 <div class=" p-10 flex justify-center  ">
-    
+    <!-- section pour suvre la pargression du téléchargement  -->
+    <div *ngIf="progression >= 0">
+        <p>Téléchargement en cours: {{progression}}%</p>
+        <progress [value]="progression" max="100"></progress>
+    </div>
     <div class="flex flex-col justify-center ">
         <!-- Bar pour contenir ajouter le lien  -->
-         <form [formGroup]="formulaire" (ngSubmit)="enyoyerData()" class="flex flex-col">
+         <form [formGroup]="formulaire" (ngSubmit)="envoyerData()" class="flex flex-col">
             <label for="link" class="m-4 text-2xl res:text-xl text-blue-400">Copye link</label>
             <div class="border rounded-3xl mb-2 ">
                 <input formControlName="video_url" type="search" placeholder="Video URL Link " class="text-xl res:text-sm font-mono w-[80%] res:w-[70%] rounded-cust p-5 res:p-3   outline-none focus:shadow-xl">
