@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       screens : {
-        'res': ['max', '600px']
+        'res': {'max': '600px'}
       },
       borderRadius: {
         'custom' : '0px 20px 20px 0',
