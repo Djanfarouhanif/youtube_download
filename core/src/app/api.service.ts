@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators'
 })
 export class ApiService {
 
-  private apiUrl = 'http://127.0.0.1:8000/download-video/'; // l'url de mon site backend
+  private apiUrl = 'https://downloadytbackend-production.up.railway.app/download-video/'; // l'url de mon site backend
   
   constructor(private http:HttpClient ) { }
 
