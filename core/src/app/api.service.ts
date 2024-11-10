@@ -43,15 +43,20 @@ export class ApiService {
     postDataWithProgress(data:any): Observable<{progress:number, response?: Blob }> {
       return new Observable(observer => {
         const xhr = new XMLHttpRequest();
+
+        // Initialisation de la requête
         xhr.open('POST', this.apiUrl, true);
         xhr.responseType = 'blob'; // Pour recevoire une réponse binaire
 
+        // Evénement de progression pour le suivi du pourcentage de la requête
         xhr.onprogress = (event) => {
           if (event.lengthComputable) {
             const progress = Math.round((event.loaded/ event.total) * 100);
             observer.next({progress});
-          };
+          }
         };
+
+      // Quand la requête est terminée
         xhr.onload = () => {
           if (xhr.status === 200) {
             observer.next({progress:100, response: xhr.response});
@@ -60,10 +65,22 @@ export class ApiService {
             observer.error(`Erreur serveur: ${xhr.status}`)
           }
         };
-        xhr.onerror = () => observer.error('Erreur réseau');
 
+        // Gérer les erreurs réseau
+        xhr.onerror = () => {
+          observer.error('Erreur réseau');
+        };
+
+        // Assurez-vous que lesen-tête sont correctement configurés pour un envoi JSON
         xhr.setRequestHeader('Content-Type', 'application/json')
-        xhr.send(JSON.stringify(data))
+        // Envoi des données sous form JSON
+        xhr.send(JSON.stringify(data));
+        // Assurez-vous que l'Observable est bien géré
+        return () => {
+          if (xhr.readyState !== 4) {
+            xhr.abort(); // Annule la requête si l'Observable est terminé ou annulé avant que la requête ne soit complète
+          }
+        };
       });
     }
 
