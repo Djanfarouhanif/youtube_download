@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 export class HomeComponent {
     
   formulaire:FormGroup
-  progression: number = 0;
+  progression: number = 65;
 
   constructor(private apiService:ApiService, private formBuilder: FormBuilder){
      this.formulaire = this.formBuilder.group({
