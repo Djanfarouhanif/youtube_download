@@ -13,7 +13,8 @@ import { CommonModule } from '@angular/common';
 export class HomeComponent {
     
   formulaire:FormGroup
-  progression: number = 65;
+  progression: number = 5;
+  loadPage:boolean = false;
 
   constructor(private apiService:ApiService, private formBuilder: FormBuilder){
      this.formulaire = this.formBuilder.group({
@@ -52,6 +53,7 @@ export class HomeComponent {
     this.apiService.postDataWithProgress(data).subscribe({
       next: (progressData) => {
         if (progressData.response) {
+          this.loadPage = !this.loadPage;
           // Téléchager la vidéo une fois le téléchargemment terminé
           const url = window.URL.createObjectURL(progressData.response);
           const a = document.createElement('a');
@@ -66,7 +68,10 @@ export class HomeComponent {
           this.progression = progressData.progress;
         }
       },
-      error: (error) => console.error('Erreur:', error)
+      error: (error) => {console.error('Erreur:', error)
+          
+      }
+      
     });
   }
 }
