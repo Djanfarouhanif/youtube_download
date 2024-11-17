@@ -52,6 +52,7 @@ export class HomeComponent {
 
     this.apiService.postDataWithProgress(data).subscribe({
       next: (progressData) => {
+        this.loadPage = !this.loadPage;
         if (progressData.response) {
           this.loadPage = !this.loadPage;
           // Téléchager la vidéo une fois le téléchargemment terminé
