@@ -8,7 +8,8 @@ import { catchError } from 'rxjs/operators'
 })
 export class ApiService {
 
-  private apiUrl = 'https://downloadytbackend-production.up.railway.app/download-video/'; // l'url de mon site backend
+  //private apiUrl = 'https://downloadytbackend-production.up.railway.app/download-video/'; // l'url de mon site backend
+  private apiUrl = 'http://127.0.0.1:8000'
   
   constructor(private http:HttpClient ) { }
 
@@ -40,9 +41,10 @@ export class ApiService {
 
   // nouveau section Code pour suvre la progressition du telechargemment
 
-    postDataWithProgress(data:any): Observable<{progress:number, response?: Blob }> {
+    postDataWithProgress(data:any): Observable<{progress: number; response?: Blob; headers?:{[key:string]: string} }> {
       return new Observable(observer => {
         const xhr = new XMLHttpRequest();
+        xhr.setRequestHeader('Content-Type', 'application/json');
 
         // Initialisation de la requête
         xhr.open('POST', this.apiUrl, true);
@@ -58,8 +60,23 @@ export class ApiService {
 
       // Quand la requête est terminée
         xhr.onload = () => {
+          
           if (xhr.status === 200) {
-            observer.next({progress:100, response: xhr.response});
+            
+            // Récupérer les en-têtê importtans
+            const headers: { [key: string]: string } = {};
+            const headerString = xhr.getAllResponseHeaders();
+            
+            // Afficher les en-têtes pour le débogage
+            console.log('En-têtes de la réponse:', headerString);
+            headerString.split('\r\n').forEach(headerLine => {
+              const [key, value] = headerLine.split(': ');
+              if (key && value){
+                headers[key.trim()] = value.trim();
+              }
+            });
+
+            observer.next({progress:100, response: xhr.response, headers});
             observer.complete();
           } else {
             observer.error(`Erreur serveur: ${xhr.status}`)

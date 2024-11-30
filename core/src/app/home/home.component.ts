@@ -52,14 +52,19 @@ export class HomeComponent {
 
     this.apiService.postDataWithProgress(data).subscribe({
       next: (progressData) => {
+        
         this.loadPage = !this.loadPage;
         if (progressData.response) {
+            console.log(progressData.response)
+          // Recuper le nom de la video depuis les en êtet HTTP
+          const title = progressData.headers?.['X-Video-Title'] || 'video';
+          
           this.loadPage = !this.loadPage;
           // Téléchager la vidéo une fois le téléchargemment terminé
           const url = window.URL.createObjectURL(progressData.response);
           const a = document.createElement('a');
           a.href = url;
-          a.download = 'video.mp4';
+          a.download = `${title}.mp4`;
           a.click();
           window.URL.revokeObjectURL(url);
 
