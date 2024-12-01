@@ -1,56 +1,15 @@
-<!-- section pour afficher la barre de progression une fois clicker  -->
-<div *ngIf="loadPage" class="absolute w-full h-full bg-black opacity-[.8] flex justify-center items-center">
-    <div *ngIf="progression >= 0">
-        <p class="">Téléchargement en cours: {{progression}}%</p>
-        <progress [value]="progression" max="100" class="w-[500px] h-10"></progress>
-    </div>
+<div class="relative min-h-screen bg-[rgb(5,5,30)] flex items-center justify-center">
+          <div class="absolute top-0 left-0 h-full ">
+            <img class="h-full w-1/2" src="../../assets/background/O7ivTAsddzoTx5HgYk8f5vYxGrY.webp" alt="">
+          </div>
+          <div class="absolute top-0 -right-56 h-full">
+             <img class="h-full w-1/2" src="../../assets/background/O7ivTAsddzoTx5HgYk8f5vYxGrY.webp" alt="">
+          </div>
 
-</div>
-
-
-
-
-<div class=" p-10 flex justify-center  ">
-    <!-- section pour suvre la pargression du téléchargement  -->
-  
-
-    <div class="flex flex-col justify-center ">
-        <!-- Bar pour contenir ajouter le lien  -->
-         <form [formGroup]="formulaire" (ngSubmit)="envoyerData()" class="flex flex-col">
-            <label for="link" class="m-4 text-2xl res:text-xl text-blue-400">Copye link</label>
-            <div class="border rounded-3xl mb-2 ">
-                <input formControlName="video_url" type="search" placeholder="Video URL Link " class="text-xl res:text-sm font-mono w-[80%] res:w-[70%] rounded-cust p-5 res:p-3   outline-none focus:shadow-xl">
-                <button type="submit" class="w-[20%] res:w-[30%] border  p-5 res:p-3 rounded-custom  bg-blue-400">Send</button>
-            </div>
-            <!-- <span *ngIf="formulaire.get('video_url')?.invalid && formulaire.get('video_url')?.touched">Url est requis</span> -->
-           
-         </form>
-        <!-- Affichier le banner de la video -->
-        <div class="  w-[500px] res:w-[200px] rounded-3xl  cursor-pointer ">
-            <div class="w-full h-[100%]  rounded-3xl" >
-                <img src="../../assets/image/youtube.webp" alt="" class="rounded-3xl">
-            </div>
-           
-        </div>
-        <!-- Titre de l'image  -->
-        <div class="text-2xl font-bold p-5 w-[500px] res:w-[200px] res:text-xs">   
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque, iste</p>
-        </div>
-        <!-- partie pour choisire la quality de video  -->
-        <select class="w-40 res:w-[100px] shadow-xl p-5 res:p-3 outline-none  m-4 rounded-xl text-slate-50 font-bold bg-black transition-all" name="" id="">
-            <option value="360p" class="">360p</option>
-            <option value="460p">460p</option>
-            <option value="760p">760p</option>
-            <option value="1080p">1080p</option>
-        </select>
-
-        <!-- Button de telechargement  -->
-            <!-- Music -->
-         <button class="bg-red-400 w-[500px] res:w-[200px] p-3 res:p-2 rounded-2xl text-slate-50 font-bold text-3xl res:text-sm mb-8 hover:scale-[1.01] transition-all">Download video</button>
-            <!-- Video -->
-        <button class="bg-red-500 w-[500px] res:w-[200px] p-3 res:p-2 rounded-2xl font-bold text-slate-50 text-3xl res:text-sm hover:scale-[1.01]  transition-all">Download audio</button>
-
-
-    </div>
-
+          <div class="z-10 bg-[rgba(15,15,44,0.55)] p-6 rounded-lg flex flex-col items-center">
+            <h1 class="text-2xl mb-4">Ajouter votre lin pour Télécharger la Video</h1>
+            <form class="w-full p-4">
+                 <input class="w-full p-3 outline-none rounded-xl">
+            </form>
+          </div>
 </div>
