@@ -16,13 +16,13 @@
                  <input class="w-full p-3 outline-none rounded-xl">
             </form>
             <!-- verifier si la requete est envoyer avant d'afficher-->
-            <div class="w-[300px] rounded-sm">
+            <div *ngIf="success" class="w-[300px] rounded-sm">
                   <img class="w-full rounded-lg" src="../../assets/image/youtube.webp" alt="">
                   <button class="text-white p-2 mt-2 rounded-xl w-full bg-gradient-to-r  from-[hsl(230,38%,25%)] to-[hsl(0,0%,82%)]">Télécharger</button>
             </div>
           </div>
-          <div class="">
-            <p class="text-gray-300">
+          <div class="relative right-20 m-10">
+            <p class="text-gray-300 ">
               Copyright © - Tous droits réservés. </p>
           </div>
           
