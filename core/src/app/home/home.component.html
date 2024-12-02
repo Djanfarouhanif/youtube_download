@@ -24,9 +24,9 @@
                  </div>
             </form>
             <!-- verifier si la requete est envoyer avant d'afficher-->
-            <div *ngIf="success" class="w-[300px] rounded-sm">
-                  <img class="w-full rounded-lg" src="../../assets/image/youtube.webp" alt="">
-                  <button class="text-white p-2 mt-2 rounded-xl w-full bg-gradient-to-r  from-[hsl(230,38%,25%)] to-[hsl(0,0%,82%)]">Télécharger</button>
+            <div *ngIf="thumbnailUrl" class="w-[300px] rounded-sm h-auto">
+                  <img class="w-full rounded-lg" [src]="thumbnailUrl" alt="">
+                  <button (click)="download()" class="text-white p-2 mt-2 rounded-xl w-full bg-gradient-to-r  from-[hsl(230,38%,25%)] to-[hsl(0,0%,82%)]">Télécharger</button>
             </div>
           </div>
           <div class="relative right-20 m-10">
