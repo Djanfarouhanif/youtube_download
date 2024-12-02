@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validator, Validators, FormControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { debounceTime } from 'rxjs';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -12,4 +13,14 @@ import { CommonModule } from '@angular/common';
 })
 export class HomeComponent {
       success = false;
+      searchControl: FormControl;
+
+      constructor(){
+        this.searchControl = new FormControl('');
+        this.searchControl.valueChanges.pipe(debounceTime(500)).subscribe(value=>{
+
+          
+        })
+      }
+
 }

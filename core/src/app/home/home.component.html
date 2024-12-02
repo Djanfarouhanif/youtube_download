@@ -13,7 +13,10 @@
               Téléchargez vos vidéos YouTube sans pub, gratuitement </h1>
             <p class="text-gray-300">Copiez le lien.</p>
             <form class="w-full p-4">
-                 <input class="w-full p-3 outline-none rounded-xl">
+                 <input [formControl]="searchControl" class="w-full p-3 outline-none rounded-xl">
+                 <div *ngIf="searchControl.value && searchControl.value.length < 3">
+                  <p class="text-red-500">Lien incorrect</p>
+                 </div>
             </form>
             <!-- verifier si la requete est envoyer avant d'afficher-->
             <div *ngIf="success" class="w-[300px] rounded-sm">
