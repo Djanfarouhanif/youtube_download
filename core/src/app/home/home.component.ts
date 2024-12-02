@@ -14,11 +14,13 @@ import { debounceTime } from 'rxjs';
 export class HomeComponent {
       success = false;
       searchControl: FormControl;
+      load:boolean = false;
+
 
       constructor(){
         this.searchControl = new FormControl('');
         this.searchControl.valueChanges.pipe(debounceTime(500)).subscribe(value=>{
-
+              this.load = !this.load
           
         })
       }

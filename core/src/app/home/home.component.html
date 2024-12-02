@@ -17,6 +17,11 @@
                  <div *ngIf="searchControl.value && searchControl.value.length < 3">
                   <p class="text-red-500">Lien incorrect</p>
                  </div>
+
+                 <!-- ANIMATION DE LOADER -->
+                 <div *ngIf="load" class="flex justify-center p-4">
+                  <div class="w-14 h-14 border-r-2 border-l-2 rounded-full animate-spin"></div>
+                 </div>
             </form>
             <!-- verifier si la requete est envoyer avant d'afficher-->
             <div *ngIf="success" class="w-[300px] rounded-sm">
