@@ -40,6 +40,11 @@
                          </div>
                       </div>
                    </div>
+                   <!-- Message lorsque le téléchargement success -->
+                    <div *ngIf="success" class="flex justify-center p-4">
+                        <p>Téléchargement réussi !</p>
+                    </div>
+
                   <!-- Message d'erreur lorsque le téléchargement echoue -->
                   <div *ngIf="loadVideoError">
                     <p class="p-2 text-red-300">Téléchargement échoué</p>

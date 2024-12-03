@@ -21,6 +21,7 @@ export class HomeComponent {
       title: string = '';
       dots = Array(5); // Représente 5 points
       isAnimating = true;
+      success = false;
 
 
      
@@ -57,7 +58,8 @@ export class HomeComponent {
         this.apiService.downloadVideo(data).subscribe({
           next: response => { 
             this.loadVideo = false;
-            console.log("success");
+            this.success = !this.success
+            
           },
           error: err => {
             this.loadVideo = false;
