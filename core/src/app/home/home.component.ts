@@ -17,7 +17,7 @@ export class HomeComponent {
       searchControl: FormControl;
       load:boolean = false; // Variable pour verifier si l'etat de requete avant d'activer le loader
       loadVideo: boolean = false; // Variale pour verifier si la video vas commencer le téléchargement ou pas
-      thumbnailUrl: string = 'j';
+      thumbnailUrl: string = '';
       title: string = '';
       dots = Array(5); // Représente 5 points
       isAnimating = true;

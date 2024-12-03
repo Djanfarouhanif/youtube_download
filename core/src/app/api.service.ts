@@ -7,9 +7,13 @@ import { catchError } from 'rxjs/operators'
   providedIn: 'root'
 })
 export class ApiService {
+  // Pour la production
+ // private apiUrlVideo = 'http://127.0.0.1:8000/download-video/';
+ // private apiUrlData  = 'http://127.0.0.1:8000/video-data/'; 
 
- private apiUrlVideo = 'http://127.0.0.1:8000/download-video/';
- private apiUrlData  = 'http://127.0.0.1:8000/video-data/'; 
+ // POUR LE DEPLOYEMENT
+ private apiUrlVideo = 'https://downloadytbackend-production.up.railway.app/download-video/';
+ private apiUrlData = 'https://downloadytbackend-production.up.railway.app/video-data/';
       constructor( private http:HttpClient){}
 
       // Fonction pour télécharger la video

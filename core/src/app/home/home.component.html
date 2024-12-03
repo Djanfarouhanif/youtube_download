@@ -16,7 +16,7 @@
                  <input [formControl]="searchControl" class="w-full p-3 outline-none rounded-xl">
                  <!-- Message d'erreur lorsque la requete n'est pas bien reusie -->
                  <div *ngIf="errorRequete">
-                  <p class="text-red-500 p-2">Veuillez ressayer une erreur est servenue</p>
+                  <p class="text-red-500 p-2">Veuillez réessayer, une erreur est survenue.</p>
                  </div>
 
                  <!-- ANIMATION DE LOADER -->
@@ -42,7 +42,7 @@
                    </div>
                   <!-- Message d'erreur lorsque le téléchargement echoue -->
                   <div *ngIf="loadVideoError">
-                    <p class="p-2 text-red-300">Téléchargement echoue</p>
+                    <p class="p-2 text-red-300">Téléchargement échoué</p>
                   </div>
             </div>
           </div>
