@@ -17,11 +17,12 @@ export class HomeComponent {
       searchControl: FormControl;
       load:boolean = false; // Variable pour verifier si l'etat de requete avant d'activer le loader
       loadVideo: boolean = false; // Variale pour verifier si la video vas commencer le téléchargement ou pas
-      thumbnailUrl: string = '';
+      thumbnailUrl: string = ''; // si il y'a un thumbnail alors la réquete est bonne ont afficher image plus button de téléchargmenet
       title: string = '';
       dots = Array(5); // Représente 5 points
       isAnimating = true;
       success = false;
+      messageError: string = ''
 
 
      
@@ -64,6 +65,7 @@ export class HomeComponent {
           error: err => {
             this.loadVideo = false;
             this.loadVideoError = !this.loadVideoError;
+            this.messageError = `echec de téléchargement verifier la connexion`
 
           }
         })
