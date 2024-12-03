@@ -9,13 +9,14 @@
               <img class="w-full h-full" src="../../assets/background/Group 1179.svg" alt="">
           </div>
           <div class="z-10 bg-[rgba(15,15,44,0.55)] p-6 rounded-lg flex flex-col items-center">
-            <h1 class="text-2xl mb-4 text-white">
+            <h1 class="text-2xl mb-4 text-white text-center">
               Téléchargez vos vidéos YouTube sans pub, gratuitement </h1>
             <p class="text-gray-300">Copiez le lien.</p>
             <form class="w-full p-4">
                  <input [formControl]="searchControl" class="w-full p-3 outline-none rounded-xl">
-                 <div *ngIf="searchControl.value && searchControl.value.length < 3">
-                  <p class="text-red-500">Lien incorrect</p>
+                 <!-- Message d'erreur lorsque la requete n'est pas bien reusie -->
+                 <div *ngIf="errorRequete">
+                  <p class="text-red-500 p-2">Veuillez ressayer une erreur est servenue</p>
                  </div>
 
                  <!-- ANIMATION DE LOADER -->
@@ -27,6 +28,22 @@
             <div *ngIf="thumbnailUrl" class="w-[300px] rounded-sm h-auto">
                   <img class="w-full rounded-lg" [src]="thumbnailUrl" alt="">
                   <button (click)="download()" class="text-white p-2 mt-2 rounded-xl w-full bg-gradient-to-r  from-[hsl(230,38%,25%)] to-[hsl(0,0%,82%)]">Télécharger</button>
+                  <!-- Animation de loadVideo Lorsque la requete est entrain d'etre envoyer pour téléchager la video -->
+                   <div *ngIf="loadVideo"  class="flex justify-center p-6 animate-bounceY ">
+                      <div class="flex space-x-2">
+                         <div *ngFor="let dot of dots; let i = index"
+                          [ngClass]="{'animate-bounceY': isAnimating}"
+                          [style.animationDelay]="isAnimating ? (i * 0.1) +'s' : ''"
+                          class="w-2 h-2 bg-white rounded-full"
+                         > 
+
+                         </div>
+                      </div>
+                   </div>
+                  <!-- Message d'erreur lorsque le téléchargement echoue -->
+                  <div *ngIf="loadVideoError">
+                    <p class="p-2 text-red-300">Téléchargement echoue</p>
+                  </div>
             </div>
           </div>
           <div class="relative right-20 m-10">

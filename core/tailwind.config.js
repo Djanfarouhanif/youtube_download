@@ -14,13 +14,20 @@ module.exports = {
         
       },
       animation: {
-        wiggle : 'wiggle 5s ease infinite'
+        wiggle : 'wiggle 5s ease infinite',
+        bounceY: 'bounceY 0.9s ease infinite'
       },
       keyframes: {
         wiggle: { 
           '0%': { backgroundPosition : '0% 50% '},
           '50%': { backgroundPosition : '100% 50%'},
           '100%': { backgroundPosition : '0% 50%'},
+        },
+        bounceY: {
+          '0%,100%': {transform: 'translateY(0)'},
+          '50%': {transform: 'translateY(-10px)'},
+          
+          
         }
       }
     },
