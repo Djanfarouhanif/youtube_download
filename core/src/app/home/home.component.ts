@@ -22,7 +22,9 @@ export class HomeComponent {
       dots = Array(5); // Représente 5 points
       isAnimating = true;
       success = false;
-      messageError: string = ''
+      messageError: string = '';
+      progress = 0;
+      isDisable:boolean = false;
 
 
      
@@ -32,14 +34,23 @@ export class HomeComponent {
         // Creation de FormControl pour serveiller les evenement dans le champs
         this.searchControl = new FormControl('');
         this.searchControl.valueChanges.pipe(debounceTime(500)).subscribe(value=>{
+
               this.errorRequete = false
               this.load = !this.load // Activer la bar de téléchagement 
               const data = {"video_url": value} // Donné envoyer au serveur backend
+
+              // Ecouter la progression
+              this.apiService.progress$.subscribe((progressValue) =>{
+                this.progress = progressValue;
+              })
+
+              // Lancer le téléchargement 
               this.apiService.getData(data).subscribe({
                 next: response => {
                   this.load = false;
-                  this.title = response.success.title ;
-                  this.thumbnailUrl = response.success.Thumbnail
+                  
+                   this.title = response.success.title ;
+                   this.thumbnailUrl = response.success.Thumbnail
                 },
                 error: err => {
                   this.load = false; // Bloque l'evenment avant de d'afficher le message d'erreur
@@ -51,6 +62,7 @@ export class HomeComponent {
       };
       // Fonction pour appeller la requete et recuper la video
       download(){
+        this.isDisable = !this.isDisable // Deactiver le button pour attendre que le téléchargemnt se termine
         this.loadVideo = !this.loadVideo;
         this.loadVideoError = false;
 
@@ -58,8 +70,14 @@ export class HomeComponent {
 
         this.apiService.downloadVideo(data).subscribe({
           next: response => { 
-            this.loadVideo = false;
-            this.success = !this.success
+            if(this.progress !== 0){
+              this.loadVideo = false;
+            }
+            if(this.progress === 100){
+              
+              this.isDisable = !this.isDisable // Activer le button une foie le téléchargement terminé 
+            }
+            
             
           },
           error: err => {
