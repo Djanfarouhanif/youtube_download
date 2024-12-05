@@ -3,10 +3,12 @@ import { ApiService } from '../api.service';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validator, Validators, FormControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { debounceTime } from 'rxjs';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule ],
+  imports: [ReactiveFormsModule, CommonModule, MatProgressBarModule ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
   
