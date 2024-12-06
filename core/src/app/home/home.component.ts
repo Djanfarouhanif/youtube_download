@@ -4,7 +4,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validator, Validators, For
 import { CommonModule } from '@angular/common';
 import { debounceTime } from 'rxjs';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -27,12 +27,13 @@ export class HomeComponent {
       messageError: string = '';
       progress = 0;
       isDisable:boolean = false;
+      progressEtat: boolean = false;
 
 
      
 
 
-      constructor( private apiService:ApiService){
+      constructor( private apiService:ApiService, private location: Location){
         // Creation de FormControl pour serveiller les evenement dans le champs
         this.searchControl = new FormControl('');
         this.searchControl.valueChanges.pipe(debounceTime(500)).subscribe(value=>{
@@ -65,7 +66,7 @@ export class HomeComponent {
       // Fonction pour appeller la requete et recuper la video
       download(){
         this.isDisable = !this.isDisable // Deactiver le button pour attendre que le téléchargemnt se termine
-        this.loadVideo = !this.loadVideo;
+        this.loadVideo = true;
         this.loadVideoError = false;
 
         const data = {"video_url": this.searchControl.value};
@@ -74,10 +75,18 @@ export class HomeComponent {
           next: response => { 
             if(this.progress !== 0){
               this.loadVideo = false;
+              this.isDisable = true;
+              
             }
             if(this.progress === 100){
               
               this.isDisable = !this.isDisable // Activer le button une foie le téléchargement terminé 
+              this.location.go(this.location.path()) // Actualiser l'url sans charger la page
+              this.success = !this.success
+              setTimeout(()=>{
+                window.location.reload()
+              }, 2000)
+             
             }
 
           },
@@ -85,9 +94,11 @@ export class HomeComponent {
             this.loadVideo = false;
             this.loadVideoError = !this.loadVideoError;
             this.messageError = `echec de téléchargement verifier la connexion`
-            this.isDisable = !this.isDisable
+            this.isDisable = false
           }
         })
       }
+// https://youtu.be/rWOl81l-kNk?si=h1I854pKivofU0E4
 
+// https://youtu.be/zLcy2uJoaTg?si=KcWEVD9dcYiT2OQl
 }

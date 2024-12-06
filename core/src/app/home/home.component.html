@@ -16,14 +16,14 @@
 
             <!-- formumlaire  -->
             <form class="w-full p-4">
-                 <input [formControl]="searchControl" class="w-full p-3 outline-none rounded-xl">
+                 <input [formControl]="searchControl"  class="w-full p-3 outline-none rounded-xl">
                  <!-- Message d'erreur lorsque la requete n'est pas bien reusie -->
                  <div *ngIf="errorRequete">
                   <p class="text-red-500 p-2"> verifier votre connexion ou l'URL est incorrect </p>
                  </div>
 
                  <!-- ANIMATION DE LOADER -->
-                 <div *ngIf="load" class="flex justify-center p-4">
+                 <div *ngIf="load && !isDisable " class="flex justify-center p-4">
                   <div class="w-14 h-14 border-r-2 border-l-2 rounded-full animate-spin"></div>
                  </div>
             </form>
@@ -57,12 +57,13 @@
                     <p class="p-2 text-red-300">{{messageError}}</p>
                   </div>
             </div>
+            <div *ngIf="progress > 0 && progress < 100 " class="text-slate-300 w-[300px] res:w-[200px] " >
+              <p class="text-gray-200 text-center"> {{progress}}%</p>
+              <mat-progress-bar class="my-4 bg-gray-200 rounded-lg shadow-md w-full p-2" mode="determinate" value="{{progress}}">{{progress}}</mat-progress-bar>
+  
+           </div>
           </div>
-         <div *ngIf="progress > 0" class="text-slate-300 w-[300px] res:w-[200px] " >
-            <p class="text-gray-200 text-center"> {{progress}}%</p>
-            <mat-progress-bar class="my-4 bg-gray-200 rounded-lg shadow-md w-full p-2" mode="determinate" value="{{progress}}">{{progress}}</mat-progress-bar>
-
-         </div>
+        
           <div class="absolute bottom-4 left-4">
             <p class="text-gray-300 res:text-sm">
               Copyright © - Tous droits réservés. </p>
