@@ -27,7 +27,7 @@ export class ApiService {
       }
 
       // Fonction pour télécharger la video
-      downloadVideo(data:any):Observable<any>{
+      downloadVideo(data:any, title:string):Observable<any>{
 
         return this.http.post(this.apiUrlVideo, data , {responseType: "blob", observe: "events", reportProgress: true }).pipe(
           tap(event => {switch (event.type){
@@ -41,6 +41,16 @@ export class ApiService {
                 if(event instanceof HttpResponse){
                   
                   this.progressSubject.next(100); // Indique que le traitement terminé
+
+                  const blob = new Blob([event.body!], {type: "video/mp4"}); // Crée un blob video
+                  const url = window.URL.createObjectURL(blob); // Crée un url pour la video
+                  const a = document.createElement('a'); // Crée un lien
+                  a.href = url;
+                  a.download =  title
+                  document.body.appendChild(a);
+                  a.click(); // Télécharge le fichier
+                  document.body.removeChild(a);
+                  window.URL.revokeObjectURL(url) // Libére l'URL Blob
                 }
                 break;
           }})

@@ -71,8 +71,10 @@ export class HomeComponent {
 
         const data = {"video_url": this.searchControl.value};
 
-        this.apiService.downloadVideo(data).subscribe({
-          next: response => { 
+        this.apiService.downloadVideo(data, this.title).subscribe({
+          next:( response) => { 
+            
+
             if(this.progress !== 0){
               this.loadVideo = false;
               this.isDisable = true;
@@ -83,6 +85,7 @@ export class HomeComponent {
               this.isDisable = !this.isDisable // Activer le button une foie le téléchargement terminé 
               this.location.go(this.location.path()) // Actualiser l'url sans charger la page
               this.success = !this.success
+              
               setTimeout(()=>{
                 window.location.reload()
               }, 2000)
