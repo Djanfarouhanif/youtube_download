@@ -79,14 +79,13 @@ export class HomeComponent {
               
               this.isDisable = !this.isDisable // Activer le button une foie le téléchargement terminé 
             }
-            
-            
+
           },
           error: err => {
             this.loadVideo = false;
             this.loadVideoError = !this.loadVideoError;
             this.messageError = `echec de téléchargement verifier la connexion`
-
+            this.isDisable = !this.isDisable
           }
         })
       }
